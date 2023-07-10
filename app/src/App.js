@@ -1,37 +1,36 @@
-import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
-import deploy from './deploy';
-import Escrow from './Escrow';
+import { ethers } from "ethers"
+import { useEffect, useState } from "react"
+import deploy from "./deploy"
+import Escrow from "./Escrow"
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 export async function approve(escrowContract, signer) {
-  const approveTxn = await escrowContract.connect(signer).approve();
-  await approveTxn.wait();
+  const approveTxn = await escrowContract.connect(signer).approve()
+  await approveTxn.wait()
 }
 
 function App() {
-  const [escrows, setEscrows] = useState([]);
-  const [account, setAccount] = useState();
-  const [signer, setSigner] = useState();
+  const [escrows, setEscrows] = useState([])
+  const [account, setAccount] = useState()
+  const [signer, setSigner] = useState()
 
   useEffect(() => {
     async function getAccounts() {
-      const accounts = await provider.send('eth_requestAccounts', []);
+      const accounts = await provider.send("eth_requestAccounts", [])
 
-      setAccount(accounts[0]);
-      setSigner(provider.getSigner());
+      setAccount(accounts[0])
+      setSigner(provider.getSigner())
     }
 
-    getAccounts();
-  }, [account]);
+    getAccounts()
+  }, [account])
 
   async function newContract() {
-    const beneficiary = document.getElementById('beneficiary').value;
-    const arbiter = document.getElementById('arbiter').value;
-    const value = ethers.BigNumber.from(document.getElementById('wei').value);
-    const escrowContract = await deploy(signer, arbiter, beneficiary, value);
-
+    const beneficiary = document.getElementById("beneficiary").value
+    const arbiter = document.getElementById("arbiter").value
+    const value = ethers.BigNumber.from(document.getElementById("wei").value)
+    const escrowContract = await deploy(signer, arbiter, beneficiary, value)
 
     const escrow = {
       address: escrowContract.address,
@@ -39,18 +38,17 @@ function App() {
       beneficiary,
       value: value.toString(),
       handleApprove: async () => {
-        escrowContract.on('Approved', () => {
-          document.getElementById(escrowContract.address).className =
-            'complete';
+        escrowContract.on("Approved", () => {
+          document.getElementById(escrowContract.address).className = "complete"
           document.getElementById(escrowContract.address).innerText =
-            "✓ It's been approved!";
-        });
+            "✓ It's been approved!"
+        })
 
-        await approve(escrowContract, signer);
+        await approve(escrowContract, signer)
       },
-    };
+    }
 
-    setEscrows([...escrows, escrow]);
+    setEscrows([...escrows, escrow])
   }
 
   return (
@@ -76,9 +74,9 @@ function App() {
           className="button"
           id="deploy"
           onClick={(e) => {
-            e.preventDefault();
+            e.preventDefault()
 
-            newContract();
+            newContract()
           }}
         >
           Deploy
@@ -90,12 +88,12 @@ function App() {
 
         <div id="container">
           {escrows.map((escrow) => {
-            return <Escrow key={escrow.address} {...escrow} />;
+            return <Escrow key={escrow.address} {...escrow} />
           })}
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
