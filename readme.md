@@ -24,4 +24,10 @@ Compile the contracts using `npx hardhat compile`. The artifacts will be placed 
 
 To run the front-end application run `npm start` from the `/app` directory. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+## To deploy your smart contract to the sepolia testnet
+
 Run npx hardhat run app/src/deploy.js --network sepolia to deploy contract to sepolia testnet. Must have your rpc and private key set up in a .env file.
+
+## To run hardhat's local blockchain
+
+Run npx hardhat node
