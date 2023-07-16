@@ -1,8 +1,7 @@
-import { ethers } from "ethers"
 import { useEffect, useState } from "react"
 import deploy from "./deploy"
 import Escrow from "./Escrow"
-
+const ethers = require("ethers")
 const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 export async function approve(escrowContract, signer) {
