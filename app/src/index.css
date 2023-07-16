@@ -1,15 +1,32 @@
 body {
-  background-color: #eee;
+  background-color: white;
   display: flex;
-  font-family: 'Muli', sans-serif;
+  font-family: "Nunito", sans-serif;
+}
+#root {
+  width: 100vw;
 }
 
-.contract, .existing-contracts {
+.header {
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.contract,
+.existing-contracts {
   margin: 20px;
   display: inline-block;
   padding: 40px;
   border: 1px solid #ddd;
-  background-color: #fff;
+  background-color: rgb(97, 205, 170);
+  border-radius: 3px;
 }
 
 h1 {
@@ -22,7 +39,7 @@ label {
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
-  color: #aaa;
+  color: black;
   margin: 20px;
 }
 
@@ -42,6 +59,7 @@ input[type="text"] {
   font-size: 14px;
   letter-spacing: 1px;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .existing-contract ul {

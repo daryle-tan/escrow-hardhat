@@ -56,43 +56,45 @@ function App() {
   return (
     <>
       <header className="header">Escrow Contract</header>
-      <div className="contract">
-        <h1> New Contract </h1>
-        <label>
-          Arbiter Address
-          <input type="text" id="arbiter" />
-        </label>
+      <div className="container">
+        <div className="contract">
+          <h1> New Contract </h1>
+          <label>
+            Arbiter Address
+            <input type="text" id="arbiter" />
+          </label>
 
-        <label>
-          Beneficiary Address
-          <input type="text" id="beneficiary" />
-        </label>
+          <label>
+            Beneficiary Address
+            <input type="text" id="beneficiary" />
+          </label>
 
-        <label>
-          Deposit Amount (in ETH)
-          <input type="text" id="wei" />
-        </label>
+          <label>
+            Deposit Amount (in ETH)
+            <input type="text" id="wei" />
+          </label>
 
-        <div
-          className="button"
-          id="deploy"
-          onClick={(e) => {
-            e.preventDefault()
+          <div
+            className="button"
+            id="deploy"
+            onClick={(e) => {
+              e.preventDefault()
 
-            newContract()
-          }}
-        >
-          Deploy
+              newContract()
+            }}
+          >
+            Deploy
+          </div>
         </div>
-      </div>
 
-      <div className="existing-contracts">
-        <h1> Existing Contracts </h1>
+        <div className="existing-contracts">
+          <h1> Existing Contracts </h1>
 
-        <div id="container">
-          {escrows.map((escrow) => {
-            return <Escrow key={escrow.address} {...escrow} />
-          })}
+          <div id="container">
+            {escrows.map((escrow) => {
+              return <Escrow key={escrow.address} {...escrow} />
+            })}
+          </div>
         </div>
       </div>
     </>
