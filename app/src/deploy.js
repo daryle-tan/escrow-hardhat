@@ -7,7 +7,6 @@ export default async function deploy(signer, arbiter, beneficiary, value) {
     Escrow.bytecode,
     signer,
   )
-  const contract = await factory.deploy(arbiter, beneficiary, { value })
 
-  return contract
+  return factory.deploy(arbiter, beneficiary, { value })
 }
